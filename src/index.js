@@ -6,7 +6,7 @@ import App from "./App";
 import OrderForm from "./OrderForm";
 
 ReactDOM.render(<BrowserRouter>
-<App />
+<OrderForm />
 </BrowserRouter>, 
 document.getElementById("root")
 );
