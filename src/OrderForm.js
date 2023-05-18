@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const OrderForm = () => {
     const [name, setName] = useState('');
     const [size, setSize] = useState('');
+    const [nameError, setNameError] = useState('');
     const [toppings, setToppings] = useState({
         topping1: false,
         topping2: false,
@@ -34,7 +35,11 @@ const OrderForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const order = {
+        if (name.length < 2) {
+            setNameError('name must be atleast characters');
+        } else {
+
+       const order = {
             name,
             size,
             ...toppings,
@@ -51,7 +56,8 @@ const OrderForm = () => {
         });
         setSpecialInstructions('');
     };
-
+    
+};
     return (
         <div> 
             <h2>Order Pizza</h2>

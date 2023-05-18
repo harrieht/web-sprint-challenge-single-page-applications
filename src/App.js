@@ -13,7 +13,7 @@ const App = () => {
       </nav>
     <Routes>
         <Route exact path="/"element={<HomePage/>}/> 
-        <Route exact path="/"element={<OrderForm/>}/>
+        <Route exact path="pizza" element={<OrderForm />} />
       </Routes>
 
     </div>
