@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import * as yup from "yup";
+
 
 const OrderForm = () => {
     const [name, setName] = useState('');
@@ -12,8 +14,15 @@ const OrderForm = () => {
     });
     const [specialInstructions, setSpecialInstructions] = useState('');
 
+
     const handleNameChange = (event) => {
         setName(event.target.value);
+
+        if (name.length < 2) {
+            setNameError('name must be at least 2 characters');
+        } else {
+            setNameError('');
+    }
     };
 
     const handleSizeChange = (event) => {
@@ -34,28 +43,6 @@ const OrderForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        if (name.length < 2) {
-            setNameError('name must be atleast characters');
-        } else {
-
-       const order = {
-            name,
-            size,
-            ...toppings,
-            special: specialInstructions,
-        };
-    
-        setName('');
-        setSize('');
-        setToppings({
-            topping1: false,
-            topiing2: false,
-            topping3: false,
-            topping4: false,
-        });
-        setSpecialInstructions('');
-    };
     
 };
     return (
@@ -68,8 +55,8 @@ const OrderForm = () => {
                 type="text"
                 value={name}
                 onChange={handleNameChange}
-                required
                 />
+                {nameError && <p>{nameError}</p>}
 
                 <label htmlFor="size-dropdown">Size:</label>
                 <select
